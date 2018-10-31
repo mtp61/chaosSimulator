@@ -9,6 +9,7 @@ public class Main extends JFrame{
 	public static final int HEIGHT = 400;
 	public static final Dimension screensize = new Dimension(WIDTH,HEIGHT);
 	
+	World world = new World();
 	
 	public Main() {
 		//creates a the DisplayPanel
@@ -33,6 +34,26 @@ public class Main extends JFrame{
 		new Main();
 //=======
 //>>>>>>> stash
+	}
+	
+	private void init() {
+		//called on start of program
+		
+	}
+	
+	private void tick(double time) {//time is the fraction of a second to calculate for
+		//get input
+		
+		
+		//create/delete magnets
+		
+		
+		//update positions
+		System.out.println(world.getArmX());
+	}
+	
+	private void render() {
+		//render magnets, arm
 	}
 
 }

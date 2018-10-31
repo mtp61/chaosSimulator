@@ -8,11 +8,13 @@ public class World {
 	private double armY = 0;
 	private double velX = 0;
 	private double velY = 0;
-	private double homeX = 1.3;
+	private double homeX = 0;
+	private double homeY = 0;
 
 	private LinkedList<Magnet> magnets = new LinkedList<Magnet>();
 	
 	public World() {
+		//class constructor
 		
 	}
 	
