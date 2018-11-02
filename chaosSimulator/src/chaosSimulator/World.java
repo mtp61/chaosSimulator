@@ -1,5 +1,7 @@
 package chaosSimulator;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.LinkedList;
 
 public class World {
@@ -16,6 +18,13 @@ public class World {
 	public World() {
 		//class constructor
 		
+	}
+	
+	public void draw(Graphics g) {
+		for(int i = 0; i < Magnet.totalMagnets; i++) {
+			g.setColor(Color.BLACK);
+			g.fillOval(//x position of the magnet in the array, //y position of the magnet in the array,//width 15, //height 15);
+		}
 	}
 	
 	public void addMagnet(Magnet magnet) {
@@ -48,3 +57,5 @@ public class World {
 	public LinkedList<Magnet> getMagnets() {return this.magnets;};
 	
 }
+
+
