@@ -20,14 +20,16 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private volatile boolean running = false;
 	
 	World world = new World();
-	
+	MouseListener listener = new MouseListener(this);
 
 	public DisplayPanel() {
 		this.setPreferredSize(Main.screensize);
 		this.setBackground(Color.WHITE);
 		this.setFocusable(true);
 		this.requestFocus();
-		this.addMouseListener(new MouseListener(this));
+		this.addMouseListener(listener);
+		this.addMouseMotionListener(listener);
+		
 	}
 	
 	

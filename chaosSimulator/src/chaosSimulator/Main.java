@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame{
 	
-	public static final int WIDTH = 400;
-	public static final int HEIGHT = 400;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 800;
 	public static final Dimension screensize = new Dimension(WIDTH,HEIGHT);
 		
 	public Main() {
@@ -19,7 +19,7 @@ public class Main extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
+
 		//adds the JPanel(Display Panel)
 		this.add(dp);
 		this.setVisible(true);
