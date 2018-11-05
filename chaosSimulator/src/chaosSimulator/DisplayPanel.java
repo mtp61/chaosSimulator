@@ -27,6 +27,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.setBackground(Color.WHITE);
 		this.setFocusable(true);
 		this.requestFocus();
+		this.addMouseListener(new MouseListener(this));
 	}
 	
 	
@@ -165,6 +166,10 @@ public class DisplayPanel extends JPanel implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillOval((int)world.getHomeX()-5,(int)world.getHomeY()-5,10,10);
 			
+	}
+	
+	public World getWorld() {
+		return this.world;
 	}
 	
 }
