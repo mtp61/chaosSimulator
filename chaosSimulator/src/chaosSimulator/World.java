@@ -12,6 +12,9 @@ public class World {
 	private double velY = 0;
 	private double homeX = 200;
 	private double homeY = 200;
+	private double defaultCoef = 1;
+	
+	private double friction = .999;
 
 	private LinkedList<Magnet> magnets = new LinkedList<Magnet>();
 	
@@ -67,8 +70,13 @@ public class World {
 		}
 		
 		
+		//simple updating
 		armX += velX;
 		armY += velY;
+		
+		//simple friction
+		armX *= friction;
+		armY *= friction;
 
 	}
 	
@@ -89,6 +97,7 @@ public class World {
 	public double getVelY() {return velY;};
 	public double getHomeX() {return homeX;};
 	public double getHomeY() {return homeY;};
+	public double getDefaultCoef() {return defaultCoef;};
 	public LinkedList<Magnet> getMagnets() {return magnets;};
 	
 }
