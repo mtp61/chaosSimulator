@@ -30,5 +30,18 @@ public class Magnet {
 	public int getXPos() { return this.xPos; }
 	public int getYPos() { return this.yPos; }
 	public double getCoef() { return this.coef; }
+
+
+
+	public void setxPos(int xPos) {
+		this.xPos = xPos;
+	}
+
+
+
+	public void setyPos(int yPos) {
+		this.yPos = yPos;
+	}
+	
 	
 }

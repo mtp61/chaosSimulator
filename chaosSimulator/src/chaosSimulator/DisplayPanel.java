@@ -19,6 +19,9 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private Thread thread1;
 	private volatile boolean running = false;
 	
+
+	MouseListener listener = new MouseListener(this);
+
 	private World world = new World();
 	
 
@@ -27,7 +30,9 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.setBackground(Color.WHITE);
 		this.setFocusable(true);
 		this.requestFocus();
-		this.addMouseListener(new MouseListener(this));
+		this.addMouseListener(listener);
+		this.addMouseMotionListener(listener);
+		
 	}
 	
 	

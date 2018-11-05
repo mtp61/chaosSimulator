@@ -5,12 +5,15 @@ import java.util.LinkedList;
 
 public class World {
 	//class contains vars about the simulation
-	private double armX = 200;
+
+	private double armX = 50;
+
+
 	private double armY = 50;
 	private double velX = 0;
 	private double velY = 0;
-	private double homeX = 200;
-	private double homeY = 200;
+	private double homeX = Main.screensize.width/2;
+	private double homeY = Main.screensize.height/2;
 	private double defaultCoef = 1;
 	private double homeCoef = 5;
 	
@@ -21,12 +24,6 @@ public class World {
 	public World() {
 		//class constructor
 		
-		
-		//testing
-		Magnet a = new Magnet(200,50,0);
-		addMagnet(a);
-		Magnet b = new Magnet(200,250,0);
-		addMagnet(b); 
 	}
 	
 	public void draw(Graphics g) {
