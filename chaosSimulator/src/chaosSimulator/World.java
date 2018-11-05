@@ -7,12 +7,12 @@ public class World {
 	//class contains vars about the simulation
 	private double armX = 200;
 	private double armY = 50;
-	private double velX = 100;
+	private double velX = 0;
 	private double velY = 0;
 	private double homeX = 200;
 	private double homeY = 200;
 	private double defaultCoef = 1;
-	private double homeCoef = 10;
+	private double homeCoef = 5;
 	
 	private double friction = .999;
 

@@ -15,7 +15,7 @@ public class Logic {
 		double deltaY = Math.abs(armY-homeY);
 		double angle = Math.atan(deltaY/deltaX);
 		double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY,2));
-		double force = 100;//Math.pow(radius/homeCoef, 2);
+		double force = Math.pow(radius/homeCoef, 2);
 		double ax = force * Math.cos(angle);
 		double ay = force * Math.sin(angle);
 		if(armX < homeX) {
