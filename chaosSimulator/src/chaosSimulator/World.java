@@ -6,24 +6,29 @@ import java.util.LinkedList;
 
 public class World {
 	//class contains vars about the simulation
-	private double armX = 0;
-	private double armY = 0;
+	private double armX = 110;
+	private double armY = 50;
 	private double velX = 0;
 	private double velY = 0;
-	private double homeX = 0;
-	private double homeY = 0;
+	private double homeX = 200;
+	private double homeY = 200;
 
 	private LinkedList<Magnet> magnets = new LinkedList<Magnet>();
 	
 	public World() {
 		//class constructor
 		
+		
+		//testing
+		Magnet a = new Magnet(50,200,0);
+		addMagnet(a);
+		Magnet b = new Magnet(200,250,0);
+		addMagnet(b); 
 	}
 	
 	public void draw(Graphics g) {
 		for(int i = 0; i < Magnet.totalMagnets; i++) {
-			g.setColor(Color.BLACK);
-			g.fillOval(//x position of the magnet in the array, //y position of the magnet in the array,//width 15, //height 15);
+			//g.setColor(Color.BLACK);
 		}
 	}
 	
@@ -43,6 +48,34 @@ public class World {
 		magnets.remove(magnet);
 	}
 	
+	
+	
+	
+	
+	
+	//tick for the world
+	public void tick() {
+		if(armX < homeX) {
+			velX += 1;
+		}else {
+			velX -= 1;
+		}
+		if(armY < homeY) {
+			velY += 1;
+		}else {
+			velY -= 1;
+		}
+		
+		
+		armX += velX;
+		armY += velY;
+
+	}
+	
+	
+	
+	
+	
 	//setters
 	public void setArmX(double armX) {this.armX = armX;};
 	public void setArmY(double armY) {this.armY = armY;};
@@ -50,11 +83,13 @@ public class World {
 	public void setVelY(double velY) {this.velY = velY;};
 	
 	//getters
-	public double getArmX() {return this.armX;};
-	public double getArmY() {return this.armY;};
-	public double getVelX() {return this.velX;};
-	public double getVelY() {return this.velY;};
-	public LinkedList<Magnet> getMagnets() {return this.magnets;};
+	public double getArmX() {return armX;};
+	public double getArmY() {return armY;};
+	public double getVelX() {return velX;};
+	public double getVelY() {return velY;};
+	public double getHomeX() {return homeX;};
+	public double getHomeY() {return homeY;};
+	public LinkedList<Magnet> getMagnets() {return magnets;};
 	
 }
 

@@ -27,5 +27,8 @@ public class Magnet {
 		this.totalMagnets--;
 	}
 	
+	public int getXPos() { return this.xPos; }
+	public int getYPos() { return this.yPos; }
+	public double getCoef() { return this.coef; }
 	
 }

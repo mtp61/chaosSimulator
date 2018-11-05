@@ -19,7 +19,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private Thread thread1;
 	private volatile boolean running = false;
 	
-	
+	World world = new World();
 	
 
 	public DisplayPanel() {
@@ -29,21 +29,47 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.requestFocus();
 	}
 	
+	
+	//main function
 	public void run() {
+		
+		init();
+		
+		//this is shitty code and needs to be cleaned up
+		int fps = 60;
+		double timePerTick = 1000000000/fps;
+		double delta = 0;
+		long now;
+		long lastTime = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
+		
+		
 		while(running) {
+			now = System.nanoTime();
+			delta += (now - lastTime) / timePerTick;
+			timer += now - lastTime;
+			lastTime = now;
 			
-			gameUpdate();
-			gameRender();
-			paintScreen();
+			if(delta >= 1) {
+				gameUpdate();
+				gameRender();
+				paintScreen();
+				delta--;
+				ticks++;
+			}
+			
+			if(timer >= 1000000000) {
+				System.out.println(ticks);
+				ticks = 0;
+				timer = 0;
+			}
+			
 
 		}
 	}
 	
-	private void draw(Graphics g) {
-		//everything drawn in this function
-		g.setColor(Color.BLACK);
-		g.drawString("ur a giant nerd matt", 200, 200);
-	}
+	
 	
 	private void paintScreen() {
 		Graphics g;
@@ -76,14 +102,6 @@ public class DisplayPanel extends JPanel implements Runnable{
 		draw(dbg);
 	}
 
-	
-
-	private void gameUpdate() {
-		if(running && thread1 != null) {
-			//update state of simulation
-		}
-		
-	}
 
 	@Override
 	public void addNotify() {
@@ -104,6 +122,49 @@ public class DisplayPanel extends JPanel implements Runnable{
 		if(running) {
 			running = false;
 		}
+	}
+	
+	
+	
+	
+	//setup simulation 
+	private void init() {
+		
+		
+	}
+	
+	
+	
+	
+	//update state of simulation
+	private void gameUpdate() {
+		if(running && thread1 != null) {
+			world.tick();
+			
+		}
+		
+	}
+	
+	private void draw(Graphics g) {
+		//everything drawn in this function
+
+		//draw arm
+		g.setColor(Color.GREEN);
+		g.fillOval((int)world.getArmX()-10,(int)world.getArmY()-10,20,20);
+		
+		
+		//draw magnets
+		g.setColor(Color.RED);
+		for(int i = 0; i < Magnet.totalMagnets; i++) {
+			Magnet m = world.getMagnets().get(i);
+			g.fillOval(m.getXPos()-10,m.getYPos()-10,20,20);
+		}
+		
+		
+		//draw home (where the arm returns to)
+		g.setColor(Color.BLACK);
+		g.fillOval((int)world.getHomeX()-5,(int)world.getHomeY()-5,10,10);
+			
 	}
 	
 }
