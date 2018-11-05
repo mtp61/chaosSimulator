@@ -53,7 +53,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 			lastTime = now;
 			
 			if(delta >= 1) {
-				gameUpdate();
+				gameUpdate(fps);
 				gameRender();
 				paintScreen();
 				delta--;
@@ -138,9 +138,9 @@ public class DisplayPanel extends JPanel implements Runnable{
 	
 	
 	//update state of simulation
-	private void gameUpdate() {
+	private void gameUpdate(int framerate) {
 		if(running && thread1 != null) {
-			world.tick();
+			world.tick(framerate);
 			
 		}
 		

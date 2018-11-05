@@ -9,7 +9,7 @@ public class Magnet {
 	private double coef; //magnet coefficient 
 	
 	static int totalMagnets = 0;
-	static int maxMagnets = 10;
+	static int maxMagnets = 1000000;
 
 	
 	public Magnet(int xPos, int yPos, double coef) {

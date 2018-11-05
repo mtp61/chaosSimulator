@@ -5,14 +5,14 @@ import java.util.LinkedList;
 
 public class World {
 	//class contains vars about the simulation
-	private double armX = 110;
+	private double armX = 200;
 	private double armY = 50;
-	private double velX = 0;
+	private double velX = 100;
 	private double velY = 0;
 	private double homeX = 200;
 	private double homeY = 200;
 	private double defaultCoef = 1;
-	private double homeCoef = 1;
+	private double homeCoef = 10;
 	
 	private double friction = .999;
 
@@ -23,7 +23,7 @@ public class World {
 		
 		
 		//testing
-		Magnet a = new Magnet(50,200,0);
+		Magnet a = new Magnet(200,50,0);
 		addMagnet(a);
 		Magnet b = new Magnet(200,250,0);
 		addMagnet(b); 
@@ -57,26 +57,30 @@ public class World {
 	
 	
 	//tick for the world
-	public void tick() {
-		if(armX < homeX) {
-			velX += 1;
+	public void tick(int framerate) {
+		/*if(armX < homeX) {
+			velX += (double)120/framerate;
 		}else {
-			velX -= 1;
+			velX -= (double)120/framerate;
 		}
 		if(armY < homeY) {
-			velY += 1;
+			velY += (double)120/framerate;
 		}else {
-			velY -= 1;
-		}
+			velY -= (double)120/framerate;
+		}*/
+		double[] a = Logic.acceleration(homeCoef, armX, homeX, armY, homeY, magnets);
 		
+		velX += a[0]/framerate;
+		velY += a[1]/framerate;
 		
 		//simple updating
-		armX += velX;
-		armY += velY;
+		armX += velX/framerate;
+		armY += velY/framerate;
+		
 		
 		//simple friction
-		armX *= friction;
-		armY *= friction;
+		//armX *= friction/framerate;
+		//armY *= friction/f;
 
 	}
 	
