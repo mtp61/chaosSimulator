@@ -1,6 +1,5 @@
 package chaosSimulator;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
@@ -13,6 +12,7 @@ public class World {
 	private double homeX = 200;
 	private double homeY = 200;
 	private double defaultCoef = 1;
+	private double homeCoef = 1;
 	
 	private double friction = .999;
 

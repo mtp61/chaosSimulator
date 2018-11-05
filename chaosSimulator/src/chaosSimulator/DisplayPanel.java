@@ -19,7 +19,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private Thread thread1;
 	private volatile boolean running = false;
 	
-	World world = new World();
+	private World world = new World();
 	
 
 	public DisplayPanel() {
