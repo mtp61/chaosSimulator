@@ -1,18 +1,21 @@
 package chaosSimulator;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
 public class World {
 	//class contains vars about the simulation
+
 	private double armX = 50;
+
+
 	private double armY = 50;
-	private double velX = 0;
+	private double velX = 100;
 	private double velY = 0;
 	private double homeX = Main.screensize.width/2;
 	private double homeY = Main.screensize.height/2;
 	private double defaultCoef = 1;
+	private double homeCoef = 10;
 	
 	private double friction = .999;
 
@@ -21,7 +24,6 @@ public class World {
 	public World() {
 		//class constructor
 		
-
 	}
 	
 	public void draw(Graphics g) {
@@ -52,26 +54,30 @@ public class World {
 	
 	
 	//tick for the world
-	public void tick() {
-		if(armX < homeX) {
-			velX += 1;
+	public void tick(int framerate) {
+		/*if(armX < homeX) {
+			velX += (double)120/framerate;
 		}else {
-			velX -= 1;
+			velX -= (double)120/framerate;
 		}
 		if(armY < homeY) {
-			velY += 1;
+			velY += (double)120/framerate;
 		}else {
-			velY -= 1;
-		}
+			velY -= (double)120/framerate;
+		}*/
+		double[] a = Logic.acceleration(homeCoef, armX, homeX, armY, homeY, magnets);
 		
+		velX += a[0]/framerate;
+		velY += a[1]/framerate;
 		
 		//simple updating
-		armX += velX;
-		armY += velY;
+		armX += velX/framerate;
+		armY += velY/framerate;
+		
 		
 		//simple friction
-		armX *= friction;
-		armY *= friction;
+		//armX *= friction/framerate;
+		//armY *= friction/f;
 
 	}
 	
