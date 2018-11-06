@@ -3,6 +3,8 @@ package chaosSimulator;
 import java.util.LinkedList;
 
 public class Logic {
+	private static double maxForce = 1000.0; //max force for a single object
+	
 	public Logic() {
 		
 	}
@@ -16,8 +18,15 @@ public class Logic {
 		double angle = Math.atan(deltaY/deltaX);
 		double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY,2));
 		double force = Math.pow(radius/100, 2)*homeCoef;
+		
+		if(force > maxForce) {
+			System.out.println("hit max force: "+ force);
+			force = maxForce;
+		}
+		
 		double ax = force * Math.cos(angle);
 		double ay = force * Math.sin(angle);
+		
 		if(armX < homeX) {
 			sum[0] += ax;
 		} else {
@@ -40,6 +49,12 @@ public class Logic {
 			angle = Math.atan(deltaY/deltaX);
 			radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY,2));
 			force = Math.pow(radius/100, -2)*m.getCoef();
+			
+			if(force > maxForce) {
+				System.out.println("hit max force: "+ force);
+				force = maxForce;
+			}
+			
 			ax = force * Math.cos(angle);
 			ay = force * Math.sin(angle);
 			if(armX < m.getXPos()) {

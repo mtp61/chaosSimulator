@@ -1,5 +1,6 @@
 package chaosSimulator;
 
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -27,9 +28,18 @@ public class MouseListener extends MouseAdapter{
 			}
 		}
 		if(canCreate) {
+			int modifiers = e.getModifiers();
 			int xCoord = e.getX();
 			int yCoord = e.getY();
-			Magnet a = new Magnet(xCoord, yCoord, displayPanel.getWorld().getDefaultCoef());
+			double coef = displayPanel.getWorld().getDefaultCoef();
+			if ((modifiers & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
+		        coef *= 1;
+			}
+		       
+		    if ((modifiers & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
+		    	coef *= -1;
+	        }
+			Magnet a = new Magnet(xCoord, yCoord, coef);
 			this.displayPanel.getWorld().addMagnet(a);
 		}
 	}

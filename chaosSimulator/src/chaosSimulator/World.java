@@ -12,7 +12,7 @@ public class World {
 	private double velY = 0;
 	private double homeX = Main.screensize.width/2;
 	private double homeY = Main.screensize.height/2;
-	private double defaultCoef = -10;
+	private double defaultCoef = 10;
 	private double homeCoef = 10;
 	
 	private double friction = .99;
