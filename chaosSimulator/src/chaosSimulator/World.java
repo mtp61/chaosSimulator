@@ -15,7 +15,7 @@ public class World {
 	private double defaultCoef = -10;
 	private double homeCoef = 10;
 	
-	private double friction = .999;
+	private double friction = .99;
 
 	private LinkedList<Magnet> magnets = new LinkedList<Magnet>();
 	
