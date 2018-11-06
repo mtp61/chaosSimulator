@@ -39,15 +39,15 @@ public class Logic {
 			deltaY = Math.abs(m.getYPos()-armY);
 			angle = Math.atan(deltaY/deltaX);
 			radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY,2));
-			force = Math.pow(radius/100, 1)*m.getCoef();
+			force = Math.pow(radius/100, -2)*m.getCoef();
 			ax = force * Math.cos(angle);
 			ay = force * Math.sin(angle);
-			if(armX < homeX) {
+			if(armX < m.getXPos()) {
 				sum[0] += ax;
 			} else {
 				sum[0] -= ax;
 			}
-			if(armY < homeY) {
+			if(armY < m.getYPos()) {
 				sum[1] += ay;
 			} else {
 				sum[1] -= ay;

@@ -6,14 +6,14 @@ import java.util.LinkedList;
 public class World {
 	//class contains vars about the simulation
 
-	private double armX = 50;
-	private double armY = 50;
+	private double armX = 100;
+	private double armY = 100;
 	private double velX = 0;
 	private double velY = 0;
 	private double homeX = Main.screensize.width/2;
 	private double homeY = Main.screensize.height/2;
-	private double defaultCoef = 1000;
-	private double homeCoef = 100;
+	private double defaultCoef = -10;
+	private double homeCoef = 10;
 	
 	private double friction = .999;
 
@@ -52,7 +52,7 @@ public class World {
 	
 	
 	//tick for the world
-	public void tick(int framerate) {
+	public void tick(double framerate) {
 		//calculate acceleration
 		double[] a = Logic.acceleration(homeCoef, armX, homeX, armY, homeY, magnets);
 		
@@ -65,8 +65,8 @@ public class World {
 		
 		
 		//simple friction
-		//armX *= friction/framerate;
-		//armY *= friction/f;
+		velX *= 1-((1-friction)/framerate);
+		velY *= 1-((1-friction)/framerate);
 
 	}
 	
