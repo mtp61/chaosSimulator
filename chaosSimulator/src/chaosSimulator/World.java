@@ -5,11 +5,14 @@ import java.util.LinkedList;
 
 public class World {
 	//class contains vars about the simulation
-
-	private double armX = 100;
-	private double armY = 100;
-	private double velX = 0;
-	private double velY = 0;
+	private double startArmX;
+	private double startArmY;
+	private double armX = startArmX;
+	private double armY = startArmY;
+	private double startVelX;
+	private double startVelY;
+	private double velX = startVelX;
+	private double velY = startVelY;
 	private double homeX = Main.screensize.width/2;
 	private double homeY = Main.screensize.height/2;
 	private double defaultCoef = 10;
@@ -41,9 +44,16 @@ public class World {
 		}
 	}
 	
-	public void removeMagnet(Magnet magnet) {
-		magnet.destroyMagnet();
-		magnets.remove(magnet);
+	
+	
+	//reset simulation
+	public void resetWorld() {
+		armX = startArmX;
+		armY = startArmY;
+		velX = startVelX;
+		velY = startVelY;
+		magnets.clear();
+		Magnet.totalMagnets = 0;
 	}
 	
 	

@@ -22,6 +22,8 @@ public class DisplayPanel extends JPanel implements Runnable{
 
 	MouseListener listener = new MouseListener(this);
 
+	private KeyInput keyInput = new KeyInput();
+	
 	private World world = new World();
 	
 
@@ -32,6 +34,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.requestFocus();
 		this.addMouseListener(listener);
 		this.addMouseMotionListener(listener);
+		this.addKeyListener(keyInput);
 		
 	}
 	
@@ -50,6 +53,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int ticks = 0;
+		
 		
 		
 		while(running) {
@@ -146,6 +150,14 @@ public class DisplayPanel extends JPanel implements Runnable{
 	//update state of simulation
 	private void gameUpdate(double framerate) {
 		if(running && thread1 != null) {
+			
+			//input
+			keyInput.tick();
+			if (keyInput.getKeys()[82] == 1) {
+				world.resetWorld();
+			}
+			
+			//update world
 			world.tick(framerate);
 			
 		}
