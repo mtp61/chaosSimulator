@@ -6,11 +6,11 @@ import java.util.LinkedList;
 public class World {
 	//class contains vars about the simulation
 
-	private double armX = 50;
+	private double armX = 100;
 
 
-	private double armY = 50;
-	private double velX = 100;
+	private double armY = 100;
+	private double velX = 400;
 	private double velY = 0;
 	private double homeX = Main.screensize.width/2;
 	private double homeY = Main.screensize.height/2;
