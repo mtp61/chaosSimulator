@@ -139,7 +139,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 	
 	
 	
-	//setup simulation 
+	//setup simulation
 	private void init() {
 		
 		

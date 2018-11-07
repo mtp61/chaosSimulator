@@ -3,7 +3,7 @@ package chaosSimulator;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-//handles key in[ut
+//handles key input
 public class KeyInput implements KeyListener{
 	private int[] keys;
 	
