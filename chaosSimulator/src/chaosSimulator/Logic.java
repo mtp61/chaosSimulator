@@ -1,6 +1,6 @@
 package chaosSimulator;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Logic {
 	private static double maxForce = 1000.0; //max force for a single object
@@ -9,7 +9,7 @@ public class Logic {
 		
 	}
 	
-	public static double[] acceleration(double homeCoef, double armX, double homeX, double armY, double homeY, LinkedList<Magnet> magnets) {
+	public static double[] acceleration(double homeCoef, double armX, double homeX, double armY, double homeY, ArrayList<Magnet> magnets) {
 		//calculate force in the x direction
 		double[] sum = {0,0};
 		//add for home

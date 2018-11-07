@@ -14,7 +14,7 @@ public class MouseListener extends MouseAdapter{
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		LinkedList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
+		ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
 		boolean canCreate = true;
 		for(int i = 0; i < Magnet.totalMagnets; i++) {
 			int magX = magnets.get(i).getXPos();
@@ -50,7 +50,7 @@ public class MouseListener extends MouseAdapter{
 	
 	public void mouseDragged(MouseEvent e) {
 		System.out.println("dragging");
-		LinkedList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
+		ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
 		for(int i = 0; i< Magnet.totalMagnets; i++) {
 			int magX = magnets.get(i).getXPos();
 			int magY = magnets.get(i).getYPos();
