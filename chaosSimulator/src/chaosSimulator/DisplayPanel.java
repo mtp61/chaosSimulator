@@ -193,7 +193,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 		g.fillOval((int)world.getHomeX()-5,(int)world.getHomeY()-5,10,10);
 		
 		
-		//draw pause text
+		//draw pause text in middle of screen
 		if (keyInput.getIsPaused()) {
 			g.setColor(Color.BLACK);
 			g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));

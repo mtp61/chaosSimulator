@@ -3,9 +3,9 @@ package chaosSimulator;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+//handles key in[ut
 public class KeyInput implements KeyListener{
 	private int[] keys;
-	private int[] keysTyped;
 	
 	private boolean isPaused = false;
 	private boolean unPressed = true;
