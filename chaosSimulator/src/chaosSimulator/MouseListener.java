@@ -9,12 +9,12 @@ import java.util.LinkedList;
 public class MouseListener extends MouseAdapter{
 	private DisplayPanel displayPanel;
 	
-	public MouseListener(DisplayPanel displayPanel) {
-		this.displayPanel = displayPanel;
+	public MouseListener(DisplayPanel dp) {
+		this.displayPanel = dp;
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		LinkedList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
+		ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
 		boolean canCreate = true;
 		for(int i = 0; i < Magnet.totalMagnets; i++) {
 			int magX = magnets.get(i).getXPos();
@@ -24,6 +24,12 @@ public class MouseListener extends MouseAdapter{
 			
 			if((mouseX <= magX + 10 && mouseX >= magX -10 && mouseY <= magY +10 && mouseY >= magY -10)) {
 				canCreate = false;
+				
+				if(!canCreate) {
+					Magnet.totalMagnets--;
+					magnets.remove(i);
+					
+				}
 				break;
 			}
 			
@@ -43,6 +49,7 @@ public class MouseListener extends MouseAdapter{
 			Magnet a = new Magnet(xCoord, yCoord, coef);
 			this.displayPanel.getWorld().addMagnet(a);
 		}
+
 	}
 	
 	public void mouseReleased(MouseEvent e) {
@@ -51,7 +58,7 @@ public class MouseListener extends MouseAdapter{
 	
 	public void mouseDragged(MouseEvent e) {
 		System.out.println("dragging");
-		LinkedList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
+		ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
 		for(int i = 0; i< Magnet.totalMagnets; i++) {
 			int magX = magnets.get(i).getXPos();
 			int magY = magnets.get(i).getYPos();

@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class World {
-	//class contains vars about the simulation
 
-	private double startArmX;
-	private double startArmY;
+
+	private double startArmX = 0;
+	private double startArmY = 0;
+
 	private double armX = startArmX;
 	private double armY = startArmY;
 	private double startVelX = 0;
@@ -27,7 +28,7 @@ public class World {
 	
 	private double friction = .95;
 
-	private LinkedList<Magnet> magnets = new LinkedList<Magnet>();
+	private ArrayList<Magnet> magnets = new ArrayList<Magnet>();
 	
 	public World() {
 		//class constructor
@@ -62,9 +63,7 @@ public class World {
 		magnets.clear();
 		Magnet.totalMagnets = 0;
 	}
-	
-	
-	
+
 	
 	
 	
@@ -105,7 +104,7 @@ public class World {
 	public double getHomeX() {return homeX;};
 	public double getHomeY() {return homeY;};
 	public double getDefaultCoef() {return defaultCoef;};
-	public LinkedList<Magnet> getMagnets() {return magnets;};
+	public ArrayList<Magnet> getMagnets() {return magnets;};
 	
 }
 
