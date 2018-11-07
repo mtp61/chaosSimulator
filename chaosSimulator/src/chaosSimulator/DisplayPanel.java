@@ -1,6 +1,7 @@
 package chaosSimulator;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -158,7 +159,9 @@ public class DisplayPanel extends JPanel implements Runnable{
 			}
 			
 			//update world
-			world.tick(framerate);
+			if (!keyInput.getIsPaused()) {
+				world.tick(framerate);
+			}
 			
 		}
 		
@@ -188,7 +191,14 @@ public class DisplayPanel extends JPanel implements Runnable{
 		//draw home (where the arm returns to)
 		g.setColor(Color.BLACK);
 		g.fillOval((int)world.getHomeX()-5,(int)world.getHomeY()-5,10,10);
-			
+		
+		
+		//draw pause text
+		if (keyInput.getIsPaused()) {
+			g.setColor(Color.BLACK);
+			g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));
+			g.drawString("PAUSED", Main.WIDTH/2-100, 100);
+		}
 	}
 	
 	public World getWorld() {
