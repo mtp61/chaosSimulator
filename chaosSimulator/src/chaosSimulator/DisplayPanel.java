@@ -42,7 +42,8 @@ public class DisplayPanel extends JPanel implements Runnable{
 		init();
 		
 		//this is shitty code and needs to be cleaned up
-		int fps = 60;
+		int fps = 600; //this not shit
+		int speed = 5; //this not shit
 		double timePerTick = 1000000000/fps;
 		double delta = 0;
 		long now;
@@ -58,7 +59,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 			lastTime = now;
 			
 			if(delta >= 1) {
-				gameUpdate(fps);
+				gameUpdate((double)fps/speed);
 				gameRender();
 				paintScreen();
 				delta--;
@@ -143,7 +144,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 	
 	
 	//update state of simulation
-	private void gameUpdate(int framerate) {
+	private void gameUpdate(double framerate) {
 		if(running && thread1 != null) {
 			world.tick(framerate);
 			

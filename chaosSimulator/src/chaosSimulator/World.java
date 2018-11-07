@@ -7,17 +7,16 @@ public class World {
 	//class contains vars about the simulation
 
 	private double armX = 100;
-
-
 	private double armY = 100;
-	private double velX = 400;
+	private double velX = 0;
+
 	private double velY = 0;
 	private double homeX = Main.screensize.width/2;
 	private double homeY = Main.screensize.height/2;
-	private double defaultCoef = 1;
+	private double defaultCoef = -20;
 	private double homeCoef = 10;
 	
-	private double friction = .999;
+	private double friction = .95;
 
 	private LinkedList<Magnet> magnets = new LinkedList<Magnet>();
 	
@@ -54,17 +53,8 @@ public class World {
 	
 	
 	//tick for the world
-	public void tick(int framerate) {
-		/*if(armX < homeX) {
-			velX += (double)120/framerate;
-		}else {
-			velX -= (double)120/framerate;
-		}
-		if(armY < homeY) {
-			velY += (double)120/framerate;
-		}else {
-			velY -= (double)120/framerate;
-		}*/
+	public void tick(double framerate) {
+		//calculate acceleration
 		double[] a = Logic.acceleration(homeCoef, armX, homeX, armY, homeY, magnets);
 		
 		velX += a[0]/framerate;
@@ -76,8 +66,8 @@ public class World {
 		
 		
 		//simple friction
-		//armX *= friction/framerate;
-		//armY *= friction/f;
+		velX *= 1-((1-friction)/framerate);
+		velY *= 1-((1-friction)/framerate);
 
 	}
 	
