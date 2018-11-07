@@ -31,7 +31,7 @@ public class World {
 	
 	public World() {
 		//class constructor
-		DefaultSetups.setup1(this);
+		//DefaultSetups.setup1(this);
 	}
 	
 	public void draw(Graphics g) {
