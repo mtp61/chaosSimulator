@@ -1,6 +1,7 @@
 package chaosSimulator;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -22,6 +23,8 @@ public class DisplayPanel extends JPanel implements Runnable{
 
 	MouseListener listener = new MouseListener(this);
 
+	private KeyInput keyInput = new KeyInput();
+	
 	private World world = new World();
 	
 
@@ -32,6 +35,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.requestFocus();
 		this.addMouseListener(listener);
 		this.addMouseMotionListener(listener);
+		this.addKeyListener(keyInput);
 		
 	}
 	
@@ -50,6 +54,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int ticks = 0;
+		
 		
 		
 		while(running) {
@@ -134,7 +139,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 	
 	
 	
-	//setup simulation 
+	//setup simulation
 	private void init() {
 		
 		
@@ -146,7 +151,17 @@ public class DisplayPanel extends JPanel implements Runnable{
 	//update state of simulation
 	private void gameUpdate(double framerate) {
 		if(running && thread1 != null) {
-			world.tick(framerate);
+			
+			//input
+			keyInput.tick();
+			if (keyInput.getKeys()[82] == 1) {
+				world.resetWorld();
+			}
+			
+			//update world
+			if (!keyInput.getIsPaused()) {
+				world.tick(framerate);
+			}
 			
 		}
 		
@@ -176,7 +191,14 @@ public class DisplayPanel extends JPanel implements Runnable{
 		//draw home (where the arm returns to)
 		g.setColor(Color.BLACK);
 		g.fillOval((int)world.getHomeX()-5,(int)world.getHomeY()-5,10,10);
-			
+		
+		
+		//draw pause text in middle of screen
+		if (keyInput.getIsPaused()) {
+			g.setColor(Color.BLACK);
+			g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));
+			g.drawString("PAUSED", Main.WIDTH/2-100, 100);
+		}
 	}
 	
 	public World getWorld() {

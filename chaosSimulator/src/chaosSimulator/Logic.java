@@ -1,5 +1,6 @@
 package chaosSimulator;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Logic {
