@@ -170,7 +170,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private void draw(Graphics g) {
 		//everything drawn in this function
 
-		//draw arm
+		//draw arm 
 		g.setColor(Color.GREEN);
 		g.fillOval((int)world.getArmX()-10,(int)world.getArmY()-10,20,20);
 		

@@ -2,7 +2,7 @@ package chaosSimulator;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
-
+ 
 public class Main extends JFrame{
 	
 	public static final int WIDTH = 800;

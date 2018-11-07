@@ -1,7 +1,7 @@
 package chaosSimulator;
 
 import java.awt.Color;
-
+ 
 import javax.swing.JPanel;
 
 public class Menu extends JPanel{

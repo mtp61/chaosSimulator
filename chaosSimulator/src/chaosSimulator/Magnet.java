@@ -1,6 +1,6 @@
 package chaosSimulator;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Graphics;
 
 public class Magnet {

@@ -67,7 +67,7 @@ public class World {
 	
 	
 	
-	//tick for the world
+	//tick for the world 
 	public void tick(double framerate) {
 		//calculate acceleration
 		double[] a = Logic.acceleration(homeCoef, armX, homeX, armY, homeY, magnets);

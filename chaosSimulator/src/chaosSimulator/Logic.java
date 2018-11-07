@@ -32,7 +32,7 @@ public class Logic {
 		double ay = force * Math.sin(angle);
 		
 		if(armX < homeX) {
-			sum[0] += ax;
+			sum[0] += ax; 
 		} else {
 			sum[0] -= ax;
 		}

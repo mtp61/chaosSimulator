@@ -21,7 +21,7 @@ public class MouseListener extends MouseAdapter{
 			int magY = magnets.get(i).getYPos();
 			int mouseX = e.getX();
 			int mouseY = e.getY();
-			
+			 
 			if((mouseX <= magX + 10 && mouseX >= magX -10 && mouseY <= magY +10 && mouseY >= magY -10)) {
 				canCreate = false;
 				
@@ -32,6 +32,7 @@ public class MouseListener extends MouseAdapter{
 				}
 				break;
 			}
+			//hello nerd
 			
 		}
 		if(canCreate) {
