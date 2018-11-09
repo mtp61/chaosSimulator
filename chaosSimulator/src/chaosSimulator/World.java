@@ -94,10 +94,22 @@ public class World {
 	public void setArmY(double armY) {this.armY = armY;};
 	public void setVelX(double velX) {this.velX = velX;};
 	public void setVelY(double velY) {this.velY = velY;};
+	public void setStartArmX(double startArmX) {
+		this.startArmX = startArmX;
+	}
+	public void setStartArmY(double startArmY) {
+		this.startArmY = startArmY;
+	}
 	
 	//getters
 	public double getArmX() {return armX;};
 	public double getArmY() {return armY;};
+	public double getStartArmX() {
+		return startArmX;
+	}
+	public double getStartArmY() {
+		return startArmY;
+	}
 	public double getVelX() {return velX;};
 	public double getVelY() {return velY;};
 	public double getHomeX() {return homeX;};
