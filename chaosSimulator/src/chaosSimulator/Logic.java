@@ -18,7 +18,12 @@ public class Logic {
 		//add for home
 		double deltaX = Math.abs(armX-homeX);
 		double deltaY = Math.abs(armY-homeY);
-		double angle = Math.atan(deltaY/deltaX);
+		double angle;
+		if (deltaX != 0) {
+			angle = Math.atan(deltaY/deltaX);
+		} else {
+			angle = 0;
+		}
 		double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY,2));
 
 		double force = Math.pow(radius/100, 2)*homeCoef;
@@ -50,7 +55,11 @@ public class Logic {
 			
 			deltaX = Math.abs(m.getXPos()-armX);
 			deltaY = Math.abs(m.getYPos()-armY);
-			angle = Math.atan(deltaY/deltaX);
+			if (deltaX != 0) {
+				angle = Math.atan(deltaY/deltaX);
+			} else {
+				angle = 0;
+			}
 			radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY,2));
 			force = Math.pow(radius/100, -2)*m.getCoef();
 			
