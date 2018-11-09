@@ -24,7 +24,7 @@ public class Logic {
 		double force = Math.pow(radius/100, 2)*homeCoef;
 		
 		if(force > maxForce) {
-			System.out.println("hit max force: "+ force);
+			//System.out.println("hit max force: "+ force);
 			force = maxForce;
 		}
 		
@@ -55,7 +55,7 @@ public class Logic {
 			force = Math.pow(radius/100, -2)*m.getCoef();
 			
 			if(force > maxForce) {
-				System.out.println("hit max force: "+ force);
+				//System.out.println("hit max force: "+ force);
 				force = maxForce;
 			}
 			
