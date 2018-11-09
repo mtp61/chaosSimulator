@@ -37,8 +37,7 @@ public class World {
 			posArrayY[i] = i * 10;
 		}
 		
-		//DefaultSetups.setup1(this);
-		DefaultSetups.setup2(this);
+		
 		
 	}
 	
