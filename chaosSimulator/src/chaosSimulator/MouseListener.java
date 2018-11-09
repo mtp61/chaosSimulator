@@ -47,6 +47,7 @@ public class MouseListener extends MouseAdapter{
 		if(displayPanel.state == STATES.shapes) {
 			for(int i=0; i<DefaultSetups.getNumOfSetups(); i++) {
 				DefaultSetups.setup = DEFAULTSETUPS.values()[i];
+				//Eric's button stuff should go here, and when a button for a particular shape setup is clicked, it should call this.useSetup("nameofsetup");
 			}
 		}
 		
@@ -117,5 +118,17 @@ public class MouseListener extends MouseAdapter{
 	
 	public void mouseMoved(MouseEvent e) {
 		
+	}
+	
+	public void useSetup(String setup) {
+		ArrayList<Magnet> setupMagnets = DefaultSetups.defaultSetups.get(setup);
+		if(DefaultSetups.defaultSetups.containsKey(setup)) {
+			for(int i = 0; i < setupMagnets.size(); i++) {
+				displayPanel.getWorld().addMagnet(setupMagnets.get(i));
+			}
+		}
+		else {
+			System.out.print("THE VALUE ASSIGNED TO SETUP BUTTON HAS NO MAGNET SETUP ATTACHED TO IT");
+		}
 	}
 }

@@ -13,6 +13,9 @@ public class Main extends JFrame{
 		//creates a the DisplayPanel
 		DisplayPanel dp = new DisplayPanel();
 		
+		//creates default setups
+		DefaultSetups.createDefaultSetups(dp.getWorld());
+		
 		//creates the JFrame with these parameters
 		this.setTitle("This shit is magnets");
 		this.setSize(screensize);
