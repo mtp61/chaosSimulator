@@ -252,7 +252,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 			g.fillOval((int)world.getArmX()-10,(int)world.getArmY()-10,20,20);
 			
 			//draw magnets
-			for(int i = 0; i < Magnet.totalMagnets; i++) {
+			for(int i = 0; i < world.getMagnets().size(); i++) {
 				Magnet m = world.getMagnets().get(i);
 				if(m.getCoef() < 0) {
 					g.setColor(Color.BLUE);

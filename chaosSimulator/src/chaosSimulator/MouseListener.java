@@ -61,7 +61,7 @@ public class MouseListener extends MouseAdapter{
 			
 			clicks ++;
 			
-			for(int i = 0; i < Magnet.totalMagnets; i++) {
+			for(int i = 0; i < magnets.size(); i++) {
 				int magX = magnets.get(i).getXPos();
 				int magY = magnets.get(i).getYPos();
 				
