@@ -50,8 +50,8 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.addKeyListener(keyInput);
 	}
 	
-	
 	//main function
+	@SuppressWarnings("static-access")
 	public void run() {
 		int fps = 600, speed = 10, delays = 0;
 		long beforeTime, afterTime, diff, sleepTime, overSleepTime = 0,timePerTick = 1000000000/fps;
