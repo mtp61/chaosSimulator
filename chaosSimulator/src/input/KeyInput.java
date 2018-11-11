@@ -1,8 +1,10 @@
-package chaosSimulator;
+package input;
+
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import chaosSimulator.DisplayPanel;
 import chaosSimulator.DisplayPanel.STATES;
 
 //handles key input
@@ -42,11 +44,13 @@ public class KeyInput implements KeyListener{
 		keys[e.getKeyCode()] = 0;
 	}
 	
-	public void keyTyped(KeyEvent e) {
-		
-	}
-	
 	public int[] getKeys() {return keys;}
 	public boolean getIsPaused() {return isPaused;}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+		
+	}
 	
 }

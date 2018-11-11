@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 public class World {
 
-	private double startArmX = 400;
-	private double startArmY = 400;
+	private double startArmX = 0;
+	private double startArmY = 0;
 	private double armX = startArmX;
 	private double armY = startArmY;
 	private double startVelX = 0;

@@ -24,7 +24,7 @@ public class Magnet {
 	
 	public void destroyMagnet() {
 		//called when destroying magnet
-		this.totalMagnets--;
+		totalMagnets--;
 	}
 	
 	public int getXPos() { return this.xPos; }
@@ -41,6 +41,15 @@ public class Magnet {
 
 	public void setyPos(int yPos) {
 		this.yPos = yPos;
+	}
+
+
+
+	public static int getTotalMagnets() {
+		return totalMagnets;
+	}
+	public void setTotalMagnets() {
+		
 	}
 	
 	

@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import chaosSimulator.DefaultSetups.DEFAULTSETUPS;
+
+import input.MouseListener;
+import input.KeyInput;
 
 public class DisplayPanel extends JPanel implements Runnable{
 	//double buffering variables
