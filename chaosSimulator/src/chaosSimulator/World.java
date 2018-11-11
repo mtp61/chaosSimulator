@@ -38,7 +38,7 @@ public class World {
 		}
 		
 		//DefaultSetups.setup1(this);
-		DefaultSetups.setup2(this);
+		//DefaultSetups.setup2(this);
 		
 	}
 	
@@ -128,7 +128,8 @@ public class World {
 		}
 		
 		if (stopped == true) {
-			System.out.println("stopped ");
+			System.out.println("stopped: " + armX + " " + armY);
+
 		}
 	}
 	
@@ -150,8 +151,7 @@ public class World {
 	}
 
 	
-	//getters
-
+//getters
 	public double getArmX() {return armX;};
 	public double getArmY() {return armY;};
 	public double getStartArmX() {

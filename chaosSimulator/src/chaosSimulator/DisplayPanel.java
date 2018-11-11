@@ -9,46 +9,39 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import chaosSimulator.DefaultSetups.DEFAULTSETUPS;
+
+import input.MouseListener;
+import input.KeyInput;
 
 public class DisplayPanel extends JPanel implements Runnable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	//double buffering
+	//double buffering variables
 	private Image dbImage;
 	private Graphics dbg;
-	//gamevars
+	//thread variables
 	private Thread thread1;
 	private volatile boolean running = false;
+	//game states
 	public enum STATES {
 		menu,
 		game,
 		shapes,
 		simulation
 	}
-	
-	public STATES state = STATES.menu;
-	
-	public STATES getState() {
-		return state;
-	}
+	private STATES state = STATES.menu;
+	public STATES getState() {return state;}
+	public void setState(STATES state) {this.state = state;}
+	//List of the possible setups
 	static ArrayList<String> setups = new ArrayList<String>(DefaultSetups.getNumOfSetups());
-
-	public void setState(STATES state) {
-		this.state = state;
-	}
-	
-	
-	MouseListener listener = new MouseListener(this);
-
+	//Adds mouse and Key Listeners
+	private MouseListener listener = new MouseListener(this);
 	private KeyInput keyInput = new KeyInput(this);
-	
+	//Timing Variables
+	private static final int DELAYS_BEFORE_YIELD = 10;
+	//Creates the world
 	private World world = new World();
 	
-
+	
+	//Class Constructor makes the DisplayPanel
 	public DisplayPanel() {
 		this.setPreferredSize(Main.screensize);
 		this.setBackground(Color.WHITE);
@@ -57,67 +50,70 @@ public class DisplayPanel extends JPanel implements Runnable{
 		this.addMouseListener(listener);
 		this.addMouseMotionListener(listener);
 		this.addKeyListener(keyInput);
-		
 	}
-	
 	
 	//main function
+	@SuppressWarnings("static-access")
 	public void run() {
-		
-		init();
-		
-		//this is shitty code and needs to be cleaned up
-		int fps = 600; //this not shit
-		int speed = 5; //this not shit
-		double timePerTick = 1000000000/fps;
-		double delta = 0;
-		long now;
-		long lastTime = System.nanoTime();
-		long timer = 0;
-		int ticks = 0;
-		
-		
+		int fps = 600, speed = 10, delays = 0;
+		long beforeTime, afterTime, diff, sleepTime, overSleepTime = 0,timePerTick = 1000000000/fps;
 		
 		while(running) {
-			now = System.nanoTime();
-			delta += (now - lastTime) / timePerTick;
-			timer += now - lastTime;
-			lastTime = now;
+			beforeTime = System.nanoTime();
 			
-			if(delta >= 1) {
-				gameUpdate((double)fps/speed);
-				gameRender();
-				paintScreen();
-				delta--;
-				ticks++;
-			}
+			gameUpdate((double)fps/speed);
+			gameRender();
+			paintScreen();
 			
-			if(timer >= 1000000000) {
-				System.out.println(ticks);
-				ticks = 0;
-				timer = 0;
-			}
+			afterTime = System.nanoTime();
+			diff = afterTime - beforeTime;
+			sleepTime = (timePerTick - diff) - overSleepTime;
 			
-
-		}
-	}
-	
-	
-	
-	private void paintScreen() {
-		Graphics g;
-		try {
-			g = this.getGraphics();
-			if(dbImage != null || g != null){
-				g.drawImage(dbImage, 0, 0, this);
-			}
-			g.dispose();
-		}catch(Exception e) {
-			System.err.println(e);
-		}
+			if(sleepTime < timePerTick && sleepTime > 0) {
+			//the thread can try to sleep 
+				try {
+					thread1.sleep(sleepTime / 1000000L);
+					overSleepTime = 0;
+				} catch (InterruptedException ex){
+					System.err.println(ex);
+				}
+			//the Difference was greater than the time per tick
+			} else if(diff > timePerTick){
+				overSleepTime = diff - timePerTick;
 		
+			//Accumulates delays and tries to yield
+			} else if(++delays >= DELAYS_BEFORE_YIELD){
+				thread1.yield();
+				delays = 0;
+				overSleepTime = 0;
+			} else if(delays <= DELAYS_BEFORE_YIELD) {
+				System.out.println(delays);
+			// the loop was shorter than expected
+			} else {
+				overSleepTime = 0;
+			}
+	
+		}
 	}
-
+	
+	//update state of simulation
+	private void gameUpdate(double framerate) {
+		if(running && thread1 != null) {
+			if(state == STATES.game) {
+				//input
+				keyInput.tick();
+				if (keyInput.getKeys()[82] == 1) {
+					world.resetWorld();
+				}
+				
+				//update world
+				if (!keyInput.getIsPaused()) {
+					world.tick(framerate);
+				}
+			}
+		}
+	}
+	
 	private void gameRender() {
 		if(dbImage == null) {
 			dbImage = createImage(Main.WIDTH, Main.HEIGHT);
@@ -134,7 +130,19 @@ public class DisplayPanel extends JPanel implements Runnable{
 		//draws the game elements
 		draw(dbg);
 	}
-
+	
+	private void paintScreen() {
+		Graphics g;
+		try {
+			g = this.getGraphics();
+			if(dbImage != null || g != null){
+				g.drawImage(dbImage, 0, 0, this);
+			}
+			g.dispose();
+		}catch(Exception e) {
+			System.err.println(e);
+		}
+	}
 
 	@Override
 	public void addNotify() {
@@ -156,38 +164,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 			running = false;
 		}
 	}
-	
-	
-	
-	
-	//setup simulation
-	private void init() {
-		
-		
-	}
-	
-	
-	
-	
-	//update state of simulation
-	private void gameUpdate(double framerate) {
-		if(running && thread1 != null) {
-			if(state == STATES.game) {
-				//input
-				keyInput.tick();
-				if (keyInput.getKeys()[82] == 1) {
-					world.resetWorld();
-				}
-				
-				//update world
-				if (!keyInput.getIsPaused()) {
-					world.tick(framerate);
-				}
-			}
-		}
-		
-	}
-	
+			
 	private void draw(Graphics g) {
 		//everything drawn in this function
 		if(state == STATES.menu) {
@@ -214,7 +191,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 				int width = 150;
 				int height = 50;
 				ArrayList<String> setups = new ArrayList<String>(DefaultSetups.getNumOfSetups());
-				for(DefaultSetups.DEFAULTSETUPS ds : DefaultSetups.DEFAULTSETUPS.values()) {
+				for(DefaultSetups.SETUPS ds : DefaultSetups.SETUPS.values()) {
 					setups.add(ds.name());
 				}
 
@@ -236,15 +213,8 @@ public class DisplayPanel extends JPanel implements Runnable{
 						y += 80;
 						x = 20;
 					}
-				}
-				
-				
-			}
-			if(DefaultSetups.setup == DEFAULTSETUPS.SQUARE) {
-				DefaultSetups.square(world, 50);
-				state = STATES.game;
-			}
-			
+				}				
+			}		
 		}
 		
 		if(state == STATES.game) {
@@ -273,9 +243,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 				g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));
 				g.drawString("PAUSED", Main.WIDTH/2-100, 100);
 			}
-
 		}
-		
 	}
 	
 	public World getWorld() {
@@ -283,7 +251,6 @@ public class DisplayPanel extends JPanel implements Runnable{
 	}
 	
 	public static ArrayList<String> getSetups() {return setups;};
-
 }
 
 

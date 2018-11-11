@@ -2,9 +2,6 @@ package chaosSimulator;
 
 import java.util.ArrayList;
 
-import java.util.LinkedList;
-
-
 public class Logic {
 	private static double maxForce = 1000.0; //max force for a single object
 	
