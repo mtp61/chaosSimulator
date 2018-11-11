@@ -75,7 +75,7 @@ public class MouseListener extends MouseAdapter{
 		
 					
 				if(!canCreate) {
-					Magnet.totalMagnets--;
+					//Magnet.totalMagnets--;
 					magnets.remove(i);
 				}
 					break;
