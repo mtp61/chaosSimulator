@@ -20,7 +20,7 @@ public class World {
 	
 	private double defaultCoef = 10;
 	private double homeCoef = 10;
-	private double friction = .8;
+	private double friction = .95;
 
 	private boolean stopped = false;
 	private double maxStopDist = 10;
@@ -145,7 +145,6 @@ public class World {
 
 	
 	//getters
-<<<<<<< HEAD
 	public double getArmX() {return armX;};
 	public double getArmY() {return armY;};
 	public double getStartArmX() {

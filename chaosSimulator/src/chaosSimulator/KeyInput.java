@@ -32,10 +32,9 @@ public class KeyInput implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_E) {
 			displayPanel.state = DisplayPanel.STATES.menu;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_R) {
+		if(e.getKeyCode() == KeyEvent.VK_W) {
 			displayPanel.getWorld().setArmX(displayPanel.getWorld().getStartArmX());
 			displayPanel.getWorld().setArmY(displayPanel.getWorld().getStartArmY());
-			displayPanel.getWorld().getMagnets();
 		}
 	}
 	

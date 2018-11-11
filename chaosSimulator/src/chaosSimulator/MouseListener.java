@@ -45,10 +45,15 @@ public class MouseListener extends MouseAdapter{
 			}
 		}
 		if(displayPanel.state == STATES.shapes) {
+			
 			for(int i=0; i<DefaultSetups.getNumOfSetups(); i++) {
-				DefaultSetups.setup = DEFAULTSETUPS.values()[i];
+				if(DefaultSetups.setup == DEFAULTSETUPS.values()[i]) {
+					DefaultSetups.square(displayPanel.getWorld(), 30); //setupFunctions.get(i).setupWorld(displayPanel.getWorld(), 0);
+				}
+				
 			}
 		}
+
 		
 		if(displayPanel.state == STATES.game) {
 			ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
@@ -61,6 +66,7 @@ public class MouseListener extends MouseAdapter{
 			clicks ++;
 			
 			for(int i = 0; i < Magnet.totalMagnets; i++) {
+				System.out.print(magnets);
 				int magX = magnets.get(i).getXPos();
 				int magY = magnets.get(i).getYPos();
 				
