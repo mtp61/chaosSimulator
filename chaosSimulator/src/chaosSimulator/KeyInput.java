@@ -30,7 +30,7 @@ public class KeyInput implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = 1;
 		if(e.getKeyCode() == KeyEvent.VK_E) {
-			displayPanel.state = DisplayPanel.STATES.menu;
+			displayPanel.setState(STATES.menu);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_W) {
 			displayPanel.getWorld().setArmX(displayPanel.getWorld().getStartArmX());

@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
-import chaosSimulator.DefaultSetups.DEFAULTSETUPS;
+import chaosSimulator.DefaultSetups.SETUPS;
 import chaosSimulator.DisplayPanel.STATES;
 
 
@@ -33,29 +33,24 @@ public class MouseListener extends MouseAdapter{
 		int mouseX = e.getX();
 		int mouseY = e.getY();
 		
-		if(displayPanel.state == STATES.menu) {
+		if(displayPanel.getState() == STATES.menu) {
 			if(mouseX >= Main.screensize.width/5 && mouseY >= Main.screensize.height/14 && mouseX <= Main.screensize.width*4/5 && mouseY <= Main.screensize.height*3/14) {
-				displayPanel.state = STATES.game;
+				displayPanel.setState(STATES.game);
 			}
 			if(mouseX >= Main.screensize.width/5 && mouseY >= Main.screensize.height*4/14 && mouseX <= Main.screensize.width*4/5 && mouseY <= Main.screensize.height*6/14) {
-				displayPanel.state = STATES.shapes;
+				displayPanel.setState(STATES.shapes);
 			}
 			if(mouseX >= Main.screensize.width/5 && mouseY >= Main.screensize.height*7/14 && mouseX <= Main.screensize.width*4/5 && mouseY <= Main.screensize.height*9/14) {
-				displayPanel.state = STATES.simulation;
+				displayPanel.setState(STATES.simulation);
 			}
 		}
-		if(displayPanel.state == STATES.shapes) {
-			
-			for(int i=0; i<DefaultSetups.getNumOfSetups(); i++) {
-				if(DefaultSetups.setup == DEFAULTSETUPS.values()[i]) {
-					DefaultSetups.square(displayPanel.getWorld(), 30); //setupFunctions.get(i).setupWorld(displayPanel.getWorld(), 0);
-				}
+		if(displayPanel.getState() == STATES.shapes) {
+			//(DefaultSetups.setup == DEFAULTSETUPS.values()[i])
 				
-			}
 		}
 
 		
-		if(displayPanel.state == STATES.game) {
+		if(displayPanel.getState() == STATES.game) {
 			ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
 			if(clicks == 0) {
 				canCreate = false;

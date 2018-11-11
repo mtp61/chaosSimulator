@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 public class World {
 
-	private double startArmX = 0;
-	private double startArmY = 0;
+	private double startArmX = 400;
+	private double startArmY = 400;
 	private double armX = startArmX;
 	private double armY = startArmY;
 	private double startVelX = 0;
@@ -23,8 +23,8 @@ public class World {
 	private double friction = .95;
 
 	private boolean stopped = false;
-	private double maxStopDist = 10;
-	private int posArraySize = 5000;
+	private double maxStopDist = 15;
+	private int posArraySize = 1000;
 	private double[] posArrayX = new double[posArraySize];
 	private double[] posArrayY = new double[posArraySize];
 	
@@ -38,6 +38,7 @@ public class World {
 		}
 		
 		//DefaultSetups.setup1(this);
+		//DefaultSetups.setup2(this);
 		
 	}
 	
@@ -69,6 +70,11 @@ public class World {
 		stopped = false;
 		magnets.clear();
 		Magnet.totalMagnets = 0;
+		for (int i = 0; i < posArraySize; i++) {
+			
+			posArrayX[i] = i * 10;
+			posArrayY[i] = i * 10;
+		}
 	}
 
 	
@@ -122,7 +128,8 @@ public class World {
 		}
 		
 		if (stopped == true) {
-			System.out.println("stopped ");
+			System.out.println("stopped: " + armX + " " + armY);
+
 		}
 	}
 	
@@ -144,7 +151,7 @@ public class World {
 	}
 
 	
-	//getters
+//getters
 	public double getArmX() {return armX;};
 	public double getArmY() {return armY;};
 	public double getStartArmX() {

@@ -10,7 +10,6 @@ public class Main extends JFrame{
 	public static final Dimension screensize = new Dimension(WIDTH,HEIGHT);
 		
 	public Main() {
-		DefaultSetups.createSetupFuncs();
 		//creates a the DisplayPanel
 		DisplayPanel dp = new DisplayPanel();
 		
