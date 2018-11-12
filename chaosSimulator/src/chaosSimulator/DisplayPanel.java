@@ -55,13 +55,13 @@ public class DisplayPanel extends JPanel implements Runnable{
 	//main function
 	@SuppressWarnings("static-access")
 	public void run() {
-		int fps = 600, speed = 10, delays = 0;
-		long beforeTime, afterTime, diff, sleepTime, overSleepTime = 0,timePerTick = 1000000000/fps;
+		int fps = 60, speed = 600, delays = 0;
+		long beforeTime, afterTime, diff, sleepTime, overSleepTime = 0,timePerTick = 1000000000/speed;
 		
 		while(running) {
 			beforeTime = System.nanoTime();
 			
-			gameUpdate((double)fps/speed);
+			gameUpdate((double)fps);
 			gameRender();
 			paintScreen();
 			
