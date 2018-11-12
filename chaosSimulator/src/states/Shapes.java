@@ -105,6 +105,7 @@ public class Shapes {
 	 */
 	
 	public void square(World world, int distance) {
+		world.resetWorld();
 		world.addMagnet(new Magnet(homeX,homeY+distance,world.getDefaultCoef()));
 		world.addMagnet(new Magnet(homeX+distance,homeY+distance,world.getDefaultCoef()));
 		world.addMagnet(new Magnet(homeX+distance,homeY,world.getDefaultCoef()));

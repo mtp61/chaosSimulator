@@ -14,7 +14,7 @@ public class Menu{
 	private int bHeight = Main.screensize.height/7;
 	private int bGap = Main.screensize.height/14;
 	private int bX = Main.screensize.width/5;
-	private int bStartY = bGap;
+	private int bStartY = bHeight;
 	
 	public Menu(DisplayPanel dp){
 		this.displayPanel = dp;
@@ -23,11 +23,13 @@ public class Menu{
 	public void draw(Graphics g) {
 		g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));
 		FontMetrics metrics = g.getFontMetrics(g.getFont());
-		g.setColor(Color.GREEN);
+		g.setColor(Color.BLACK);
+		g.drawString("Welcome To 'This Shit Is Magnets'",Main.screensize.width-metrics.stringWidth("Welcome To 'This Shit Is Magnets'")-6, 75);
+		g.setColor(Color.RED);
 		g.fillRect(bX, bStartY, bWidth, bHeight);
 		g.setColor(Color.BLACK);
 		g.drawString("SIMULATION", bX + ((bWidth - metrics.stringWidth("SIMULATION"))/2), bStartY + (bHeight + metrics.getHeight())/2);
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.RED);
 		g.fillRect(bX, bStartY + bHeight + bGap, bWidth, bHeight);
 		g.setColor(Color.BLACK);
 		g.drawString("DEFAULT SHAPES", bX + ((bWidth - metrics.stringWidth("DEFAULT SHAPES"))/2), bStartY + bHeight + bGap + (bHeight + metrics.getHeight())/2);

@@ -126,7 +126,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 			}
 		}
 		//clears the screen before we draw to it
-		dbg.setColor(Color.WHITE);
+		dbg.setColor(Color.LIGHT_GRAY);
 		dbg.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 		//draws the game elements
 		draw(dbg);
@@ -175,7 +175,7 @@ public class DisplayPanel extends JPanel implements Runnable{
 			shapes.draw(g);	
 		}
 		if(state == STATES.game) {
-			g.setColor(Color.GREEN);
+			g.setColor(Color.GRAY);
 			g.fillOval((int)world.getArmX()-10,(int)world.getArmY()-10,20,20);
 			
 			//draw magnets

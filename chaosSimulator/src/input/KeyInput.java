@@ -32,6 +32,7 @@ public class KeyInput implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = 1;
 		if(e.getKeyCode() == KeyEvent.VK_E) {
+			MouseListener.setClicks(0);
 			displayPanel.setState(STATES.menu);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_W) {

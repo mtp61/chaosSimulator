@@ -10,7 +10,7 @@ import chaosSimulator.Magnet;
 
 public class MouseListener extends MouseAdapter{
 	private DisplayPanel displayPanel;
-	int clicks = 0;
+	private static int clicks = 0;
 	boolean canCreate;
 	public MouseListener(DisplayPanel dp) {
 		this.displayPanel = dp;
@@ -80,6 +80,10 @@ public class MouseListener extends MouseAdapter{
 	
 	public void mouseMoved(MouseEvent e) { 
 
+	}
+	
+	public static void setClicks(int c) {
+		clicks = c;
 	}
 }
 
