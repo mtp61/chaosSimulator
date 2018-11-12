@@ -123,7 +123,6 @@ public class World {
 		}
 		
 		if (stopped == true) {
-			System.out.println("stopped: " + armX + " " + armY);
 
 		}
 	}

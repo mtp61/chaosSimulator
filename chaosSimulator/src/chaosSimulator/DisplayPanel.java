@@ -86,10 +86,11 @@ public class DisplayPanel extends JPanel implements Runnable{
 				thread1.yield();
 				delays = 0;
 				overSleepTime = 0;
+
 			} else if(delays <= DELAYS_BEFORE_YIELD) {
-				System.out.println(delays);
-			// the loop was shorter than expected
+				//nothing
 			} else {
+				// the loop was shorter than expected
 				overSleepTime = 0;
 			}
 	

@@ -40,17 +40,15 @@ public class MouseListener extends MouseAdapter{
 			clicks ++;
 			
 			for(int i = 0; i < magnets.size(); i++) {
-				System.out.print(magnets);
-				int magX = magnets.get(i).getXPos();
-				int magY = magnets.get(i).getYPos();
+				double magX = magnets.get(i).getXPos();
+				double magY = magnets.get(i).getYPos();
 				
-				if((mouseX <= magX + 10 && mouseX >= magX -10 && mouseY <= magY +10 && mouseY >= magY -10)) {
+				if((mouseX <= magX + 15 && mouseX >= magX -15 && mouseY <= magY +15 && mouseY >= magY -15)) {
 					canCreate = false;
 				}
 				if(!canCreate) {
 					//Magnet.totalMagnets--;
 					magnets.remove(i);
-				}
 					break;
 				}			
 			}
@@ -68,6 +66,7 @@ public class MouseListener extends MouseAdapter{
 		        }
 			Magnet a = new Magnet(xCoord, yCoord, coef);
 			this.displayPanel.getWorld().addMagnet(a);
+			}
 		}
 	}
 
@@ -79,7 +78,8 @@ public class MouseListener extends MouseAdapter{
 
 	}
 	
-	public void mouseMoved(MouseEvent e) {
-		
+	public void mouseMoved(MouseEvent e) { 
+
 	}
 }
+
