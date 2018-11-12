@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
  
 public class Main extends JFrame{
-	
+	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 800;
 	public static final Dimension screensize = new Dimension(WIDTH,HEIGHT);
@@ -26,10 +26,9 @@ public class Main extends JFrame{
 		
 		
 	}
-
+	
 	public static void main(String[] args) {
 		
 		new Main();
 	}
-
 }

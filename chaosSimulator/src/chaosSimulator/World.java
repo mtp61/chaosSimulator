@@ -2,8 +2,6 @@ package chaosSimulator;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 
 public class World {
 
@@ -43,16 +41,14 @@ public class World {
 	}
 	
 	public void draw(Graphics g) {
-		for(int i = 0; i < Magnet.totalMagnets; i++) {
+		for(int i = 0; i < magnets.size(); i++) {
 			//g.setColor(Color.BLACK);
 		}
 	}
 	
 	public void addMagnet(Magnet magnet) {
-		if(Magnet.totalMagnets < Magnet.maxMagnets){
-			//add magnet
+		if(magnets.size() < Magnet.getMaxMagnets()){
 			magnets.add(magnet);
-			
 		}else {
 			//too many magnets
 			System.out.println("too many magnets");
@@ -69,7 +65,6 @@ public class World {
 		velY = startVelY;
 		stopped = false;
 		magnets.clear();
-		Magnet.totalMagnets = 0;
 		for (int i = 0; i < posArraySize; i++) {
 			
 			posArrayX[i] = i * 10;
@@ -165,9 +160,7 @@ public class World {
 	public double getHomeX() {return homeX;};
 	public double getHomeY() {return homeY;};
 	public double getDefaultCoef() {return defaultCoef;};
-	public ArrayList<Magnet> getMagnets() {return magnets;};
-
-	
+	public ArrayList<Magnet> getMagnets() {return magnets;}
 }
 
 

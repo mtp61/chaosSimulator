@@ -37,6 +37,8 @@ public class KeyInput implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_W) {
 			displayPanel.getWorld().setArmX(displayPanel.getWorld().getStartArmX());
 			displayPanel.getWorld().setArmY(displayPanel.getWorld().getStartArmY());
+			displayPanel.getWorld().setVelX(0);
+			displayPanel.getWorld().setVelY(0);
 		}
 	}
 	

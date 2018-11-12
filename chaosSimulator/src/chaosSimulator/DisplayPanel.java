@@ -2,18 +2,16 @@ package chaosSimulator;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
-
 import input.MouseListener;
+import states.Menu;
+import states.Shapes;
 import input.KeyInput;
 
 public class DisplayPanel extends JPanel implements Runnable{
+	private static final long serialVersionUID = 1L;
 	//double buffering variables
 	private Image dbImage;
 	private Graphics dbg;
@@ -30,8 +28,6 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private STATES state = STATES.menu;
 	public STATES getState() {return state;}
 	public void setState(STATES state) {this.state = state;}
-	//List of the possible setups
-	static ArrayList<String> setups = new ArrayList<String>(DefaultSetups.getNumOfSetups());
 	//Adds mouse and Key Listeners
 	private MouseListener listener = new MouseListener(this);
 	private KeyInput keyInput = new KeyInput(this);
@@ -39,6 +35,10 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private static final int DELAYS_BEFORE_YIELD = 10;
 	//Creates the world
 	private World world = new World();
+	//Create Menu
+	Menu menu = new Menu(this);
+	Shapes shapes = new Shapes(this);
+	
 	
 	
 	//Class Constructor makes the DisplayPanel
@@ -168,61 +168,17 @@ public class DisplayPanel extends JPanel implements Runnable{
 	private void draw(Graphics g) {
 		//everything drawn in this function
 		if(state == STATES.menu) {
-			g.setColor(Color.GREEN);
-			g.fillRect(Main.screensize.width/5, Main.screensize.height/14, Main.screensize.width*3/5, Main.screensize.height/7);
-			g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));
-			FontMetrics metrics = g.getFontMetrics(g.getFont());
-			g.setColor(Color.BLACK);
-			g.drawString("SIMULATION",Main.screensize.width/5 + ((Main.screensize.width*3/5 - metrics.stringWidth("SIMULATION"))/2), Main.screensize.height/14 + (Main.screensize.height/7 + metrics.getHeight())/2);
-			g.setColor(Color.YELLOW);
-			g.fillRect(Main.screensize.width/5, Main.screensize.height*4/14, Main.screensize.width*3/5, Main.screensize.height/7);
-			g.setColor(Color.BLACK);
-			g.drawString("DEFAULT SHAPES",Main.screensize.width/5 + ((Main.screensize.width*3/5 - metrics.stringWidth("DEFAULT SHAPES"))/2), Main.screensize.height*4/14 + (Main.screensize.height/7 + metrics.getHeight())/2);
-			g.setColor(Color.RED);
-			g.fillRect(Main.screensize.width/5, Main.screensize.height*7/14, Main.screensize.width*3/5, Main.screensize.height/7);
-			g.setColor(Color.BLACK);
-			g.drawString("PRETTY COLORS",Main.screensize.width/5 + ((Main.screensize.width*3/5 - metrics.stringWidth("PRETTY COLORS"))/2), Main.screensize.height*7/14 + (Main.screensize.height/7 + metrics.getHeight())/2);
+			menu.draw(g);
 		}
-		
 		if(state == STATES.shapes) {
-			if(DefaultSetups.setup == null) {
-				int x = 20;
-				int y = 100;
-				int width = 150;
-				int height = 50;
-				ArrayList<String> setups = new ArrayList<String>(DefaultSetups.getNumOfSetups());
-				for(DefaultSetups.SETUPS ds : DefaultSetups.SETUPS.values()) {
-					setups.add(ds.name());
-				}
-
-				for(int i = 0; i < DefaultSetups.getNumOfSetups(); i++) {
-					g.setColor(Color.GREEN);
-					g.fillRect(x, y, width, height);
-					g.setColor(Color.BLACK);
-					
-					//string format
-					g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 20));
-					FontMetrics metrics = g.getFontMetrics(g.getFont());
-
- 
-					g.drawString(setups.get(i), x+((width-metrics.stringWidth(setups.get(i)))/2), y+((height+metrics.getHeight())/2));
-					
-					if(x < Main.screensize.width - 200) {
-						x += 200;
-					}else {
-						y += 80;
-						x = 20;
-					}
-				}				
-			}		
+			shapes.draw(g);	
 		}
-		
 		if(state == STATES.game) {
 			g.setColor(Color.GREEN);
 			g.fillOval((int)world.getArmX()-10,(int)world.getArmY()-10,20,20);
 			
 			//draw magnets
-			for(int i = 0; i < Magnet.totalMagnets; i++) {
+			for(int i = 0; i < this.getWorld().getMagnets().size(); i++) {
 				Magnet m = world.getMagnets().get(i);
 				if(m.getCoef() < 0) {
 					g.setColor(Color.BLUE);
@@ -250,7 +206,11 @@ public class DisplayPanel extends JPanel implements Runnable{
 		return this.world;
 	}
 	
-	public static ArrayList<String> getSetups() {return setups;};
+	public Menu getMenu() {
+		return this.menu;
+	}
+	
+	public Shapes getShapes() {
+		return this.shapes;
+	}
 }
-
-

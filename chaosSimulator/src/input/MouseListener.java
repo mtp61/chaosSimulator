@@ -1,61 +1,36 @@
 package input;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import javax.swing.JPanel;
-
-import chaosSimulator.DefaultSetups.SETUPS;
 import chaosSimulator.DisplayPanel;
 import chaosSimulator.DisplayPanel.STATES;
 import chaosSimulator.Magnet;
-import chaosSimulator.Main;
 
 
 public class MouseListener extends MouseAdapter{
 	private DisplayPanel displayPanel;
-	
 	int clicks = 0;
 	boolean canCreate;
-
-		
 	public MouseListener(DisplayPanel dp) {
 		this.displayPanel = dp;
-		
 	}
 	
+	@SuppressWarnings("unused")
 	public void mousePressed(MouseEvent e) {
-
-		 
 		double mouseX = e.getX();
 		double mouseY = e.getY();
 		
 		if(displayPanel.getState() == STATES.menu) {
-			if(mouseX >= Main.screensize.width/5 && mouseY >= Main.screensize.height/14 && mouseX <= Main.screensize.width*4/5 && mouseY <= Main.screensize.height*3/14) {
-				displayPanel.setState(STATES.game);
-			}
-			if(mouseX >= Main.screensize.width/5 && mouseY >= Main.screensize.height*4/14 && mouseX <= Main.screensize.width*4/5 && mouseY <= Main.screensize.height*6/14) {
-				displayPanel.setState(STATES.shapes);
-			}
-			if(mouseX >= Main.screensize.width/5 && mouseY >= Main.screensize.height*7/14 && mouseX <= Main.screensize.width*4/5 && mouseY <= Main.screensize.height*9/14) {
-				displayPanel.setState(STATES.simulation);
-			}
+			displayPanel.getMenu().listen(mouseX, mouseY);
 		}
+		
 		if(displayPanel.getState() == STATES.shapes) {
-			//(DefaultSetups.setup == DEFAULTSETUPS.values()[i])
-				
+			displayPanel.getShapes().listen(mouseX, mouseY);
 		}
 
-		
 		if(displayPanel.getState() == STATES.game) {
 			ArrayList<Magnet> magnets = this.displayPanel.getWorld().getMagnets();
-			boolean onMagnet;
 			if(clicks == 0) {
 				canCreate = false;
 			}else {
@@ -64,18 +39,16 @@ public class MouseListener extends MouseAdapter{
 			
 			clicks ++;
 			
-			for(int i = 0; i < Magnet.getTotalMagnets(); i++) {
+			for(int i = 0; i < magnets.size(); i++) {
 				System.out.print(magnets);
 				int magX = magnets.get(i).getXPos();
 				int magY = magnets.get(i).getYPos();
 				
 				if((mouseX <= magX + 10 && mouseX >= magX -10 && mouseY <= magY +10 && mouseY >= magY -10)) {
 					canCreate = false;
-				
-		
-					
+				}
 				if(!canCreate) {
-					Magnet.totalMagnets--;
+					//Magnet.totalMagnets--;
 					magnets.remove(i);
 				}
 					break;
@@ -93,13 +66,11 @@ public class MouseListener extends MouseAdapter{
 			    if ((modifiers & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
 			    	coef *= -1;
 		        }
-				Magnet a = new Magnet(xCoord, yCoord, coef);
-				this.displayPanel.getWorld().addMagnet(a);
-			}
+			Magnet a = new Magnet(xCoord, yCoord, coef);
+			this.displayPanel.getWorld().addMagnet(a);
 		}
 	}
 
-	
 	public void mouseReleased(MouseEvent e) {
 
 	}
