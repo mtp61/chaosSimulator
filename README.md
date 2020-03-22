@@ -1,5 +1,5 @@
 # chaosSimulator
-This shit is magnets
+This is magnets
 
 Left click to place attracting magnets  
 Right click to place repelling magnets  
