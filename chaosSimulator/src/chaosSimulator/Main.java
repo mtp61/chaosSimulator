@@ -14,7 +14,7 @@ public class Main extends JFrame{
 		DisplayPanel dp = new DisplayPanel();
 		
 		//creates the JFrame with these parameters
-		this.setTitle("This shit is magnets");
+		this.setTitle("This is magnets");
 		this.setSize(screensize);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -24,7 +24,7 @@ public class Menu{
 		g.setFont(new Font(g.getFont().toString(), Font.PLAIN, 50));
 		FontMetrics metrics = g.getFontMetrics(g.getFont());
 		g.setColor(Color.BLACK);
-		g.drawString("Welcome To 'This Shit Is Magnets'",Main.screensize.width-metrics.stringWidth("Welcome To 'This Shit Is Magnets'")-6, 75);
+		g.drawString("Welcome To 'This Is Magnets'",Main.screensize.width-metrics.stringWidth("Welcome To 'This Is Magnets'")-6, 75);
 		g.setColor(Color.RED);
 		g.fillRect(bX, bStartY, bWidth, bHeight);
 		g.setColor(Color.BLACK);
